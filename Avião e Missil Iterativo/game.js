@@ -16,7 +16,8 @@ let missileY = canvas.height / 2;
 
 // Função para desenhar o avião
 function drawPlane() {
-    // Implemente o desenho do avião aqui
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(planeX - 10, planeY - 10, 20, 20);
 }
 
 // Função para desenhar o míssil
