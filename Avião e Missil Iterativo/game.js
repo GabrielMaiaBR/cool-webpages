@@ -22,12 +22,21 @@ function drawPlane() {
 
 // Função para desenhar o míssil
 function drawMissile() {
-    // Implemente o desenho do míssil aqui
+    ctx.fillStyle = 'red';
+    ctx.fillRect(missileX - 5, missileY - 5, 10, 10);
 }
 
 // Função para atualizar a posição do míssil em direção ao avião
 function updateMissile() {
-    // Implemente a lógica de atualização do míssil aqui
+    const dx = planeX - missileX;
+    const dy = planeY - missileY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const speed = 2;
+
+    if (distance > 0) {
+        missileX += (dx / distance) * speed;
+        missileY += (dy / distance) * speed;
+    }
 }
 
 // Função para verificar se o míssil atingiu o avião
