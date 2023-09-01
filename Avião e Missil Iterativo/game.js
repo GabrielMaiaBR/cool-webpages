@@ -13,6 +13,9 @@ let planeX = canvas.width / 2;
 let planeY = canvas.height / 2;
 let missileX = canvas.width / 2;
 let missileY = canvas.height / 2;
+let explosionX = -100; // Inicialmente fora da tela
+let explosionY = -100; // Inicialmente fora da tela
+let explosionFrame = 0;
 
 // Função para desenhar o avião
 function drawPlane() {
