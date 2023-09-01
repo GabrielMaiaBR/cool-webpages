@@ -41,12 +41,34 @@ function updateMissile() {
 
 // Função para verificar se o míssil atingiu o avião
 function checkCollision() {
-    // Implemente a verificação de colisão aqui
+    const dx = planeX - missileX;
+    const dy = planeY - missileY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < 10) {
+        // O míssil atingiu o avião, então mostre a explosão
+        explosionX = planeX;
+        explosionY = planeY;
+        missileX = canvas.width / 2;
+        missileY = canvas.height / 2;
+
+        // Reproduza o som de explosão
+        if (soundEnabled) {
+            explosionSound.play();
+        }
+    }
 }
 
 // Função para lidar com o disparo do míssil
 function fireMissile() {
-    // Implemente a lógica de disparo do míssil aqui
+    // Defina a posição inicial do míssil como a posição atual do avião
+    missileX = planeX;
+    missileY = planeY;
+
+    // Reproduza o som do míssil
+    if (soundEnabled) {
+        missileSound.play();
+    }
 }
 
 // Função para lidar com o som ligado/desligado
