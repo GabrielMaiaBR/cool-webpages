@@ -71,6 +71,25 @@ function fireMissile() {
     }
 }
 
+// Função para desenhar a explosão
+function drawExplosion() {
+    ctx.fillStyle = 'orange';
+    ctx.beginPath();
+    ctx.arc(explosionX, explosionY, explosionFrame, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// Função para atualizar a animação da explosão
+function updateExplosion() {
+    if (explosionFrame < 40) {
+        explosionFrame += 1;
+    } else {
+        explosionX = -100;
+        explosionY = -100;
+        explosionFrame = 0;
+    }
+}
+
 // Função para lidar com o som ligado/desligado
 function toggleSound() {
     soundEnabled = !soundEnabled;
