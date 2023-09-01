@@ -100,6 +100,8 @@ function animate() {
     drawMissile();
     updateMissile();
     checkCollision();
+    drawExplosion();
+    updateExplosion();
 
     requestAnimationFrame(animate);
 }
