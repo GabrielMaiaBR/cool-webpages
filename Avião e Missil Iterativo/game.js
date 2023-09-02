@@ -3,6 +3,8 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const toggleSoundButton = document.getElementById('toggleSound');
 let soundEnabled = true;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 // Carregue sons
 const explosionSound = new Audio('explosion.mp3');
@@ -107,9 +109,12 @@ canvas.addEventListener('mousemove', (e) => {
 
 // Adicione um ouvinte de evento para disparar o míssil com o clique direito
 canvas.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    fireMissile();
+    e.preventDefault(); // Impede o menu de contexto padrão
+    if (e.button === 2) { // Verifica se o botão direito do mouse foi clicado (código 2)
+        fireMissile();
+    }
 });
+
 
 // Adicione um ouvinte de evento para alternar o som
 toggleSoundButton.addEventListener('click', toggleSound);
