@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editor de Árvore DOM</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .selected {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="dom-tree">
+    <div class="element">
+      <p>Elemento 1</p>
+      <button class="select">Selecionar</button>
+      <button class="remove">Remover</button>
+      <button class="change">Alterar Propriedades</button>
+      <button class="addChild">Adicionar Filho</button>
+    </div>
+    <div class="element">
+      <p>Elemento 2</p>
+      <button class="select">Selecionar</button>
+      <button class="remove">Remover</button>
+      <button class="change">Alterar Propriedades</button>
+      <button class="addChild">Adicionar Filho</button>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Selecionar um elemento
+      $('#dom-tree').on('click', '.select', function() {
+        $('.element').removeClass('selected');
+        $(this).closest('.element').addClass('selected');
+      });
+
+      // Remover um elemento e seus filhos
+      $('#dom-tree').on('click', '.remove', function() {
+        $(this).closest('.element').remove();
+      });
+
+      // Alterar propriedades de um elemento (exemplo: texto)
+      $('#dom-tree').on('click', '.change', function() {
+        const newText = prompt('Digite o novo texto:');
+        if (newText !== null) {
+          $(this).closest('.element').find('p').text(newText);
+        }
+      });
+
+      // Adicionar um novo elemento como filho do elemento selecionado
+      $('#dom-tree').on('click', '.addChild', function() {
+        const newChildText = prompt('Digite o texto do novo filho:');
+        if (newChildText !== null) {
+          const newChild = $('<div class="element"><p>' + newChildText + '</p><button class="select">Selecionar</button><button class="remove">Remover</button><button class="change">Alterar Propriedades</button><button class="addChild">Adicionar Filho</button></div>');
+          $(this).closest('.element').append(newChild);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
