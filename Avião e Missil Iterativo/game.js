@@ -10,25 +10,28 @@ canvas.height = window.innerHeight;
 const explosionSound = new Audio('explosion.mp3');
 const missileSound = new Audio('missile.mp3');
 
+// Carregue as imagens
+const planeImage = document.getElementById('planeImage');
+const missileImage = document.getElementById('missileImage');
+
 // Defina as posições iniciais do avião e do míssil
-let planeX = canvas.width / 2;
-let planeY = canvas.height / 2;
-let missileX = canvas.width / 2;
-let missileY = canvas.height / 2;
+// (use o centro das imagens)
+let planeX = canvas.width / 2 - planeImage.width / 2;
+let planeY = canvas.height / 2 - planeImage.height / 2;
+let missileX = canvas.width / 2 - missileImage.width / 2;
+let missileY = canvas.height / 2 - missileImage.height / 2;
 let explosionX = -100; // Inicialmente fora da tela
 let explosionY = -100; // Inicialmente fora da tela
 let explosionFrame = 0;
 
 // Função para desenhar o avião
 function drawPlane() {
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(planeX - 10, planeY - 10, 20, 20);
+    ctx.drawImage(planeImage, planeX, planeY);
 }
 
 // Função para desenhar o míssil
 function drawMissile() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(missileX - 5, missileY - 5, 10, 10);
+    ctx.drawImage(missileImage, missileX, missileY);
 }
 
 // Função para atualizar a posição do míssil em direção ao avião
@@ -54,8 +57,8 @@ function checkCollision() {
         // O míssil atingiu o avião, então mostre a explosão
         explosionX = planeX;
         explosionY = planeY;
-        missileX = canvas.width / 2;
-        missileY = canvas.height / 2;
+        missileX = canvas.width / 2 - missileImage.width / 2;
+        missileY = canvas.height / 2 - missileImage.height / 2;
 
         // Reproduza o som de explosão
         if (soundEnabled) {
@@ -95,30 +98,6 @@ function updateExplosion() {
     }
 }
 
-// Função para lidar com o som ligado/desligado
-function toggleSound() {
-    soundEnabled = !soundEnabled;
-    toggleSoundButton.textContent = soundEnabled ? 'Mute Sound' : 'Unmute Sound';
-}
-
-// Adicione um ouvinte de evento para acompanhar o movimento do mouse
-canvas.addEventListener('mousemove', (e) => {
-    planeX = e.clientX - canvas.getBoundingClientRect().left;
-    planeY = e.clientY - canvas.getBoundingClientRect().top;
-});
-
-// Adicione um ouvinte de evento para disparar o míssil com o clique direito
-canvas.addEventListener('contextmenu', (e) => {
-    e.preventDefault(); // Impede o menu de contexto padrão
-    if (e.button === 2) { // Verifica se o botão direito do mouse foi clicado (código 2)
-        fireMissile();
-    }
-});
-
-
-// Adicione um ouvinte de evento para alternar o som
-toggleSoundButton.addEventListener('click', toggleSound);
-
 // Função principal de animação
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -133,5 +112,32 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
-// Inicie a animação
-animate();
+// Adicione um ouvinte de evento para acompanhar o movimento do mouse
+canvas.addEventListener('mousemove', (e) => {
+    planeX = e.clientX - canvas.getBoundingClientRect().left - planeImage.width / 2;
+    planeY = e.clientY - canvas.getBoundingClientRect().top - planeImage.height / 2;
+});
+
+// Adicione um ouvinte de evento para disparar o míssil com o clique direito
+canvas.addEventListener('contextmenu', (e) => {
+    e.preventDefault(); // Impede o menu de contexto padrão
+    if (e.button === 2) { // Verifica se o botão direito do mouse foi clicado (código 2)
+        fireMissile();
+    }
+});
+
+// Adicione um ouvinte de evento para alternar o som
+toggleSoundButton.addEventListener('click', toggleSound);
+
+// Função principal de inicialização
+function init() {
+    // Inicie a animação
+    animate();
+}
+
+// Carregue as imagens antes de iniciar o jogo
+planeImage.onload = function () {
+    missileImage.onload = function () {
+        init();
+    };
+};
