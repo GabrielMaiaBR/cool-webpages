@@ -29,18 +29,15 @@
 
   <script>
     $(document).ready(function() {
-      // Selecionar um elemento
       $('#dom-tree').on('click', '.select', function() {
         $('.element').removeClass('selected');
         $(this).closest('.element').addClass('selected');
       });
 
-      // Remover um elemento e seus filhos
       $('#dom-tree').on('click', '.remove', function() {
         $(this).closest('.element').remove();
       });
 
-      // Alterar propriedades de um elemento (exemplo: texto)
       $('#dom-tree').on('click', '.change', function() {
         const newText = prompt('Digite o novo texto:');
         if (newText !== null) {
@@ -48,7 +45,6 @@
         }
       });
 
-      // Adicionar um novo elemento como filho do elemento selecionado
       $('#dom-tree').on('click', '.addChild', function() {
         const newChildText = prompt('Digite o texto do novo filho:');
         if (newChildText !== null) {
