@@ -18,6 +18,13 @@
         <input type="submit" value="Enviar">
     </form>
 
+    <!-- Formulário de exemplo para upload de arquivo via POST -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="file">Selecione um arquivo:</label>
+        <input type="file" id="file" name="file" required><br>
+        <input type="submit" value="Enviar Arquivo">
+    </form>
+
     <!-- Botão para acionar a chamada AJAX -->
     <button id="loadData">Carregar Dados JSON</button>
     
