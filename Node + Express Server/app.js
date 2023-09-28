@@ -29,13 +29,23 @@ app.get('/process-form', (req, res) => {
 
 // Rota para upload de arquivo via POST
 app.post('/upload', upload.single('file'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('Nenhum arquivo foi enviado.');
+  }
+
+  // O arquivo foi enviado com sucesso
   res.send('Arquivo enviado com sucesso.');
 });
 
-// Rota AJAX
+// Rota AJAX para obter dados JSON
 app.get('/data.json', (req, res) => {
   const jsonData = { message: 'Isso é um exemplo de dados JSON.' };
   res.json(jsonData);
+});
+
+// Rota raiz, onde seu arquivo HTML será servido
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 // Iniciar o servidor
