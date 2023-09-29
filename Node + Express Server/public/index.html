@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Aplicação</title>
-    <link rel="stylesheet" href="style.css"> <!-- Se você tiver um arquivo CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Minha Aplicação Express</h1>
     
-    <!-- Formulário de exemplo para dados via GET -->
     <form action="/process-form" method="GET">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required><br>
@@ -18,19 +17,15 @@
         <input type="submit" value="Enviar">
     </form>
 
-    <!-- Formulário de exemplo para upload de arquivo via POST -->
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <label for="file">Selecione um arquivo:</label>
         <input type="file" id="file" name="file" required><br>
         <input type="submit" value="Enviar Arquivo">
     </form>
 
-    <!-- Botão para acionar a chamada AJAX -->
     <button id="loadData">Carregar Dados JSON</button>
+        <p id="jsonData">Dados JSON serão exibidos aqui.</p>
     
-    <!-- Parágrafo onde os dados JSON serão exibidos -->
-    <p id="jsonData">Dados JSON serão exibidos aqui.</p>
-    
-    <script src="script.js"></script> <!-- Inclua o arquivo script.js aqui -->
+    <script src="script.js"></script>
 </body>
 </html>

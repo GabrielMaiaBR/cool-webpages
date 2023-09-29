@@ -1,4 +1,3 @@
-/* Estilos para o corpo da página */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,7 +5,6 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Estilos para o cabeçalho */
 h1 {
     text-align: center;
     background-color: #333;
@@ -15,7 +13,6 @@ h1 {
     margin: 0;
 }
 
-/* Estilos para o formulário */
 form {
     max-width: 400px;
     margin: 20px auto;
@@ -49,7 +46,6 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-/* Estilos para o botão de carregar dados JSON */
 #loadData {
     background-color: #333;
     color: #fff;
@@ -60,7 +56,6 @@ input[type="submit"] {
     margin-top: 20px;
 }
 
-/* Estilos para o parágrafo de dados JSON */
 #jsonData {
     margin-top: 20px;
     background-color: #fff;
